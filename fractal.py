@@ -7,14 +7,14 @@ background_color = (0, 0, 0) # black
 tree_color = (0, 255, 0) # green
 width, height = 1000, 800
 thick = 6
-color_gradient = True
+color_gradient = 1
 
 # fractal settings
 length0 = width / 5
-levels = 10
+levels = 13
 
 
-def gradient_line(win, color1, color2, pos1, pos2, width, split = 10):
+def gradient_line(win, color1, color2, pos1, pos2, width, split = 3):
     """
     Manually split a line from pos1 to pos2 into 'split' # of lines to add
     color gradient from color1 to color2 (linear interpolation)
@@ -56,7 +56,7 @@ def fractal(win, x, y, length, angle, ratio, delta_angle, level=levels):
         color1 = list(map(lambda x: 255 * x, colorsys.hsv_to_rgb(level/levels, 1.0, 1.0)))
         color2 = list(map(lambda x: 255 * x, colorsys.hsv_to_rgb((level - 1)/levels, 1.0, 1.0)))
 
-        gradient_line(win, color1, color2, (x, y), (x2, y2), width=branch_width, split = 20)
+        gradient_line(win, color1, color2, (x, y), (x2, y2), width=branch_width)
     else:
         pygame.draw.line(win, tree_color, (x, y), (x2, y2), width=branch_width)
 
